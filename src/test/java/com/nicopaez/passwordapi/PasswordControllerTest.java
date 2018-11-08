@@ -30,12 +30,6 @@ public class PasswordControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void getHello() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
-
-    @Test
     public void getPassword() throws Exception {
         MvcResult result =mvc.perform(MockMvcRequestBuilders.get("/password")
                 .accept(MediaType.APPLICATION_JSON))

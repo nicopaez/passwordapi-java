@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 target
+.vscode
+helm
+k8s
 
 # Log file
 *.log

@@ -3,18 +3,23 @@ package com.nicopaez.passwordapi;
 import org.apache.commons.text.RandomStringGenerator;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.view.RedirectView;
+import springfox.documentation.annotations.ApiIgnore;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 public class PasswordController {
-    
+
     @RequestMapping(value="/", method=RequestMethod.GET)
-    public String index() {
-        return "Greetings from PasswordAPI!. Documentation on ";
+    @ApiIgnore
+    public RedirectView index() {
+        return new RedirectView("/swagger-ui.html", true);
     }
 
     @RequestMapping(value="/hash", method= RequestMethod.GET)

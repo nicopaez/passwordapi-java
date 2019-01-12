@@ -1,5 +1,7 @@
 package com.nicopaez.passwordapi;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -33,10 +35,13 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("PasswordAPI")
                 .description("Password-related features API")
-                .version("1.5.0")
+                .version(buildProperties.getVersion())
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
                 .contact(new Contact("NicoPaez", "https://blog.nicopaez.com", "nicopaez_at_computer.org"))
                 .build();
     }
+
+    @Autowired
+    BuildProperties buildProperties;
 }

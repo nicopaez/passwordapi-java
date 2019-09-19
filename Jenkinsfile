@@ -26,7 +26,7 @@ pipeline {
         stage('build') {
 
             steps {
-                sh "mvn clean test"
+                sh "cd . && mvn clean test"
             }
         }
 

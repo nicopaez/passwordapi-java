@@ -9,14 +9,7 @@ pipeline {
         pollSCM('H/5 * * * *')
     }
 
-    agent {
-        docker {
-            image 'maven:3.6.1-jdk-8-slim'
-        }
-    }
-    
     stages {
-
         stage('Clone repo') {
             steps{
                 checkout([$class: 'GitSCM', branches: [[name: 'refs/heads/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'CleanBeforeCheckout']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/nicopaez/passwordapi-java.git']]])
@@ -24,18 +17,21 @@ pipeline {
         }
 
         stage('build') {
-
             steps {
-                sh "cd . && mvn clean test"
+                sh "mvn clean test"
             }
         }
 
         stage('package') {
             steps {
-                sh "docker build --tag passwordapijava:latest --file Dockerfile-java8 ."
+                sh "mvn clean package -DskipTests"
+                sh """
+                    JAR_FILE=`ls target/*.jar | sed 's/target\\///'`
+                    VERSION=`echo \${JAR_FILE} | sed 's/passwordapi-//' | sed 's/.jar//'`
+                    docker build --tag passwordapi-java:\${VERSION} --build-arg JAR_FILE=target/passwordapi-\${VERSION}.jar --file Dockerfile .
+                    """
             }
         }
-
     }
     post {
         always {

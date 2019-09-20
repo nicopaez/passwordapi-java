@@ -9,6 +9,8 @@ pipeline {
         pollSCM('H/5 * * * *')
     }
 
+    agent any
+    
     stages {
         stage('Clone repo') {
             steps{

@@ -12,4 +12,4 @@ This project is based on Java 8 and Maven 3.
 
 docker build -t nicopaez/passwordapi-java:$VERSION . --build-arg JAR_FILE=./target/passwordapi-$VERSION.jar
 
-docker build -t nicopaez/passwordapi-java:$VERSION-fabric8.openjdk8 . --build-arg JAR_FILE=./target/passwordapi-$VERSION.jar
+docker build -t nicopaez/passwordapi-java:$VERSION-fabric8.openjdk8 . --build-arg JAR_FILE=./target/passwordapi-$VERSION.jarhola

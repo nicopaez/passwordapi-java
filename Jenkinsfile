@@ -22,11 +22,13 @@ pipeline {
             }
             steps {
                 sh 'mvn clean package'
+                stash includes: 'target/*jar', name: 'binaries'
             }
         }
 
         stage('image') {
             steps {
+                unstash 'binaries'
                 sh "docker build -t nicopaez/passwordapi-java:taller . --build-arg JAR_FILE=./target/passwordapi-1.5.1.jar"
             }
         }

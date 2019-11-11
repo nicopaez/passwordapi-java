@@ -40,7 +40,7 @@ pipeline {
         stage('deploy') {
             steps {
                 sh "kubectl set image deployment/passnico passnico=nicopaez/passwordapi-java:taller\${BUILD_ID}"
-                sh "sleep 30"
+                sh "sleep 60"
             }
         }
         stage('acceptance_test') {

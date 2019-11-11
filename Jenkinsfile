@@ -39,12 +39,13 @@ pipeline {
         }
         stage('deploy') {
             steps {
-                echo "kubectl set image deployment/passnico passnico=nicopaez/passwordapi-java:taller\${BUILD_ID}"
+                sh "kubectl set image deployment/passnico passnico=nicopaez/passwordapi-java:taller\${BUILD_ID}"
+                sh "sleep 30"
             }
         }
         stage('acceptance_test') {
             steps {
-                echo 'curl http://178.128.128.101/actuator/health'
+                sh 'curl http://178.128.128.101/actuator/health'
             }
         }        
     }

@@ -29,7 +29,7 @@ pipeline {
         stage('image') {
             steps {
                 unstash 'binaries'
-                sh "docker build -t nicopaez/passwordapi-java:taller\${BUILD_ID} . --build-arg JAR_FILE=./target/passwordapi-1.5.1.jar"
+                sh "docker build -t nicopaez/passwordapi-java:taller\${BUILD_ID} . --build-arg JAR_FILE=./target/passwordapi-1.5.2.jar"
             }
         }
         stage('publish') {

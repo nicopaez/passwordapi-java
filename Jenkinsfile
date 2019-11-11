@@ -34,7 +34,7 @@ pipeline {
         }
         stage('publish') {
             steps {
-                sh "docker push nicopaez/passwordapi-java:taller"
+                sh "docker push nicopaez/passwordapi-java:taller\${BUILD_ID}"
             }
         }
         stage('deploy') {
